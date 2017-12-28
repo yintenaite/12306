@@ -140,16 +140,12 @@ class Train(object):
     def login(self):
 
         # 1 伪装cookie++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        jsUrl = 'https://kyfw.12306.cn/otn/HttpZF/GetJS'
         setCookieCountError = 0
         while True:
             if setCookieCountError > 3:
                 print('设置cookie失败，退出程序')
                 sys.exit()
             try:
-                response = self.session.get(jsUrl)
-                pattern = re.compile(r'algID=(.*?)&')
-                algID = pattern.findall(response.text)
                 url = 'https://kyfw.12306.cn/otn/HttpZF/logdevice?algID=WYEdoc45yu&hashCode=EhTtj7Znzyie6I21jpgekYReLAnA8fyGEB4VlIGbF0g&FMQw=0&q4f3=zh-CN&VPIf=1&custID=133&VEek=unknown&dzuS=20.0%20r0&yD16=0&EOQP=895f3bf3ddaec0d22b6f7baca85603c4&lEnu=3232235778&jp76=e8eea307be405778bd87bbc8fa97b889&hAqN=Win32&platform=WEB&ks0Q=2955119c83077df58dd8bb7832898892&TeRS=728x1366&tOHY=24xx768x1366&Fvje=i1l1o1s1&q5aJ=-8&wNLf=99115dfb07133750ba677d055874de87&0aew={}&E3gR=abfdbb80598e02f8aa71b2b330daa098&timestamp={}'.format(
                     self.session.headers['User-Agent'], str(round(time.time() * 1000)))
                 response = self.session.get(requests.utils.requote_uri(url))
