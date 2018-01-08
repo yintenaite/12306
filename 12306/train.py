@@ -251,11 +251,11 @@ class Train(object):
 
         #2 查询车次+++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        queryUrl = 'https://kyfw.12306.cn/otn/leftTicket/query?leftTicketDTO.train_date={}&leftTicketDTO.from_station={}&leftTicketDTO.to_station={}&purpose_codes=ADULT'.format(
+        queryUrl = 'https://kyfw.12306.cn/otn/leftTicket/queryZ?leftTicketDTO.train_date={}&leftTicketDTO.from_station={}&leftTicketDTO.to_station={}&purpose_codes=ADULT'.format(
             self.trainDate, self.fromStationCode, self.toStationCode)
         findTicketError = 0
         while True:
-            if findTicketError > 5:
+            if findTicketError > 3:
                 print('查询出现错误，退出程序')
                 sys.exit()
             try:
